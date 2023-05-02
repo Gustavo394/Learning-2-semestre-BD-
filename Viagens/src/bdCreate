@@ -1,0 +1,30 @@
+CREATE DATABASE viagem;
+
+CREATE TABLE pessoa (  
+    cpf VARCHAR(50) PRIMARY KEY not null,
+    nome VARCHAR(50) not null,
+    idade VARCHAR(50) not null,
+    sexo VARCHAR(50) not null
+);
+
+CREATE TABLE veiculo (  
+    placa VARCHAR(50) PRIMARY KEY not null,
+    modelo VARCHAR(50) not null,
+    tipo VARCHAR(50) not null,
+    ano VARCHAR(50) not null
+);
+
+CREATE TABLE destino (
+    cep VARCHAR(50) PRIMARY KEY not null,
+    endereco VARCHAR(50) not null
+);
+
+CREATE TABLE viagem (
+    id SERIAL PRIMARY KEY,
+    cpf_viajante VARCHAR(50) not null,
+    placa_veiculo VARCHAR(50) not null,
+    cep_destino VARCHAR(50) not null,
+    FOREIGN KEY (cpf_viajante) REFERENCES pessoa(cpf),
+    FOREIGN KEY (placa_veiculo) REFERENCES veiculo(placa),
+    FOREIGN KEY (cep_destino) REFERENCES destino(cep)
+);
